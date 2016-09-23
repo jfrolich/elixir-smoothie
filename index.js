@@ -29,6 +29,11 @@ sass.render({ file: path.join(TEMPLATE_DIR, 'layout', 'style.scss') }, function(
       uppercaseHeadings: false,
     }).replace(/{/g, '<%=').replace(/}/g, '%>');
 
+    try { fs.mkdirSync(path.join(TEMPLATE_DIR, 'build')) }
+    catch(e) {
+      if ( e.code != 'EEXIST' ) throw e;
+    }
+
     fs.writeFileSync(
       path.join(TEMPLATE_DIR, 'build', file),
       juicedTemplate
