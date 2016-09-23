@@ -1,0 +1,34 @@
+{
+  "name": "elixir-smoothie",
+  "version": "1.0.0",
+  "description": "Juice up your Elixir templates, compagnion of the Smoothy package on Hex.pm for Elixir.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
+  },
+  "bin": {
+    "elixir-smoothie": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jfrolich/elixir-smoothie.git"
+  },
+  "keywords": [
+    "inline",
+    "styles",
+    "email",
+    "e-mail",
+    "elixir",
+    "phoenix"
+  ],
+  "author": "Jaap Frolich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfrolich/elixir-smoothie/issues"
+  },
+  "homepage": "https://github.com/jfrolich/elixir-smoothie#readme",
+  "dependencies": {
+    "html-to-text": "^2.1.3"
+  }
+}
