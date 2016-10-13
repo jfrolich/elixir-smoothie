@@ -1,0 +1,7 @@
+
+<table align="center" class="container"><tbody><tr><td>
+  <table class="row"><tbody><tr>
+    <h2 style="font-style: italic;">Hello</h2>
+    <p>Hello <%= name %></p>
+  </tr></tbody></table>
+</td></tr></tbody></table>
