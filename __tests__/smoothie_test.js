@@ -32,7 +32,7 @@ test('handle templates without layouts', () =>
 test('handle templates with foundation', () =>
   runScript({env: Object.assign(PROCESS_ENV, {
     SMOOTHIE_TEMPLATE_DIR: '__tests__/data',
-    SMOOTHIE_USE_FOUNDATION: true
+    SMOOTHIE_USE_FOUNDATION: 'true'
   })})
   .then(() => {
     const html = 'template_simple_with_foundation.html.eex';

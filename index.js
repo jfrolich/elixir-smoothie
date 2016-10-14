@@ -54,6 +54,9 @@ try {
     else throw(e)
   }
 
+  if (LAYOUT_FILE) console.log(`Using layout file: ${LAYOUT_FILE}`);
+  else console.log('No layout specified');
+
   const escapeEex = text => text.replace(/<%(.*?)%>/g, (match, p1) => `{{{${p1}}}}`);
   const unescapeEex = text => text.replace(/{{{(.*?)}}}/g, (match, p1) => `<%${p1}%>`);
   const wrapEex = text => text.replace(/<%(.*?)%>/g, match =>  `<!-- ${match} -->`);
