@@ -57,21 +57,19 @@ try {
 
   const escapeEex = text => text.replace(/<%(.*?)%>/g, (match, p1) => `{{{${p1}}}}`);
   const unescapeEex = text => text.replace(/{{{(.*?)}}}/g, (match, p1) => `<%${p1}%>`);
-  const wrapEex = text => text.replace(/<%(.*?)%>/g, match =>  `<!-- ${match} -->`);
-  const unwrapEex = text => text.replace(/<!-- <%(.*?)%> -->/g, (match, p1) => `<%${p1}%>`)
   const compileInky = $ => (new Inky({})).releaseTheKraken($)
 
   templateFiles.forEach(file => {
     let template = fs.readFileSync(path.join(TEMPLATE_DIR, file), { encoding: 'utf-8' });
     template = layout.replace('{content}', template);
 
-    let $ = cheerio.load(wrapEex(template), {xmlMode: true});
+    let $ = cheerio.load(escapeEex(template), {xmlMode: true});
 
     const templateCss = $('style').contents().toArray().reduce((prev, curr) => prev + curr.data, '');
     $('style').remove();
 
     template = USE_FOUNDATION ? compileInky($) : $.html();
-    template = unwrapEex(template);
+    template = unescapeEex(template);
 
     const completeCss = css + templateCss;
     const juicedTemplate = juice.inlineContent(template, completeCss, JUICE_OPTIONS);

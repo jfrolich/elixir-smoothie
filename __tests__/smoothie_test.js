@@ -10,6 +10,7 @@ PROCESS_ENV = process.env;
 
 const runScript = (opts = {}) => new Promise((resolve, reject) => {
   exec("./index.js", opts, (error, stdout, stderr) => {
+    // console.error(stderr)
     if (error) reject(error)
     else resolve({stdout, stderr});
   })
@@ -20,7 +21,9 @@ test('expect to fail when no template dir specified', () => {
 });
 
 test('handle templates without layouts', () =>
-  runScript({env: Object.assign(PROCESS_ENV, {SMOOTHIE_TEMPLATE_DIR: '__tests__/data'})})
+  runScript({env: Object.assign(PROCESS_ENV, {
+    SMOOTHIE_TEMPLATE_DIR: '__tests__/data'
+  })})
   .then(() => {
     const html = 'template_simple.html.eex';
     const txt = 'template_simple.txt.eex';
@@ -46,6 +49,7 @@ test('handle layout file not found', () =>
   runScript({env: Object.assign(PROCESS_ENV, {
     SMOOTHIE_TEMPLATE_DIR: '__tests__/data',
     SMOOTHIE_LAYOUT_FILE:  '__tests__/data/layout/wrong.html.eex',
+    SMOOTHIE_USE_FOUNDATION: 'false'
   })})
   .then(({stderr}) => {
     expect(stderr).toBe('Error: Layout file not found\n');
@@ -57,6 +61,8 @@ test('handle templates with layouts', () =>
   runScript({env: Object.assign(PROCESS_ENV, {
     SMOOTHIE_TEMPLATE_DIR: '__tests__/data',
     SMOOTHIE_LAYOUT_FILE:  '__tests__/data/layout/layout.html.eex',
+    SMOOTHIE_USE_FOUNDATION: 'false'
+
   })})
   .then(() => {
     const html = 'template_simple_with_layout.html.eex';
@@ -71,6 +77,7 @@ test('handle templates with layouts and sass', () =>
     SMOOTHIE_TEMPLATE_DIR: '__tests__/data',
     SMOOTHIE_LAYOUT_FILE:  '__tests__/data/layout/layout.html.eex',
     SMOOTHIE_SCSS_FILE: '__tests__/data/css/style.scss',
+    SMOOTHIE_USE_FOUNDATION: 'false'
   })})
   .then(({stdout}) => {
     const html = 'template_simple_with_layout_and_stylesheet.html.eex';
