@@ -7,7 +7,6 @@ const path = require('path');
 const sass = require('node-sass');
 const Inky = require('inky').Inky;
 const cheerio = require('cheerio');
-const utils = require('./utils');
 const chalk = require('chalk');
 
 const TEMPLATE_DIR = process.env.SMOOTHIE_TEMPLATE_DIR;
@@ -26,7 +25,6 @@ try {
   if (!TEMPLATE_DIR) throw(new SmoothieException("No template dir specified"))
   // fs.accessSync(TEMPLATE_DIR, fs.F_OK);
 
-  const BUILD_DIR = path.join(TEMPLATE_DIR, 'build');
   const FOUNDATION_STYLE_PATH = path.join('node_modules/foundation-emails/dist', 'foundation-emails.css');
 
   const JUICE_OPTIONS = {
@@ -38,12 +36,12 @@ try {
   const templateFiles = fs.readdirSync(TEMPLATE_DIR).filter(file => file.includes('.eex'));
   console.log(templateFiles.map(file => '- ' + file).join('\n'))
 
-  let css = ''
+  let css = USE_FOUNDATION ? fs.readFileSync(FOUNDATION_STYLE_PATH, 'utf8') : '';
 
   if (SCSS_FILE) {
-    css = sass.renderSync({ file: SCSS_FILE }).css
+    css += sass.renderSync({ file: SCSS_FILE }).css
   } else if(CSS_FILE) {
-    css = fs.readFileSync(file_path, 'utf8');
+    css += fs.readFileSync(CSS_FILE, 'utf8');
   }
 
   let layout = '';
@@ -76,7 +74,7 @@ try {
     template = unwrapEex(template);
 
     const completeCss = css + templateCss;
-    const juicedTemplate = juice.inlineContent(template, completeCss);
+    const juicedTemplate = juice.inlineContent(template, completeCss, JUICE_OPTIONS);
     const textTemplate = unescapeEex(htmlToText.fromString(escapeEex(template), {
       uppercaseHeadings: false,
     }));
