@@ -22,7 +22,10 @@
     "elixir",
     "phoenix"
   ],
-  "author": "Jaap Frolich",
+  "authors": [
+    "Jaap Frolich <jfrolich@gmail.com> (https://github.com/jfrolich)",
+    "Stephen Moloney (https://github.com/stephenmoloney)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jfrolich/elixir-smoothie/issues"
