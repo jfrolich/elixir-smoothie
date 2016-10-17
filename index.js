@@ -27,11 +27,6 @@ try {
 
   const FOUNDATION_STYLE_PATH = path.join('node_modules/foundation-emails/dist', 'foundation-emails.css');
 
-  const JUICE_OPTIONS = {
-      preserveImportant: true
-  };
-
-
   console.log('Preparing to compile the following template files:');
   const templateFiles = fs.readdirSync(TEMPLATE_DIR).filter(file => file.includes('.eex'));
   console.log(templateFiles.map(file => '- ' + file).join('\n'))
@@ -43,6 +38,12 @@ try {
   } else if(CSS_FILE) {
     css += fs.readFileSync(CSS_FILE, 'utf8');
   }
+
+  const JUICE_OPTIONS = {
+      preserveImportant: true,
+      removeStyleTags: true,
+      extraCss: css,
+  };
 
   let layout = '';
   try {
@@ -64,15 +65,14 @@ try {
     template = layout.replace('{content}', template);
 
     let $ = cheerio.load(escapeEex(template), {xmlMode: true});
-
-    const templateCss = $('style').contents().toArray().reduce((prev, curr) => prev + curr.data, '');
-    $('style').remove();
+    // const templateCss = $('style').contents().toArray().reduce((prev, curr) => prev + curr.data, '');
+    // do not remove inline styles, they could contain things like media queries
+    // $('style').remove();
 
     template = USE_FOUNDATION ? compileInky($) : $.html();
     template = unescapeEex(template);
 
-    const completeCss = css + templateCss;
-    const juicedTemplate = juice.inlineContent(template, completeCss, JUICE_OPTIONS);
+    const juicedTemplate = juice(template, JUICE_OPTIONS);
     const textTemplate = unescapeEex(htmlToText.fromString(escapeEex(template), {
       uppercaseHeadings: false,
     }));
