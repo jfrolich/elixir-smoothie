@@ -5,3 +5,7 @@
 </style>
 <h2>Hello</h2>
 <p>Hello <%= name %></p>
+<p>Countdown: <%= Enum.map([3,2,1], fn number -> %>
+  <%= number %>
+<% end) %>
+</p>

@@ -1,2 +1,5 @@
 Hello
 Hello <%= name %>
+
+Countdown: <%= Enum.map([3,2,1], fn number -> %> <%= number %>
+<% end) %>
