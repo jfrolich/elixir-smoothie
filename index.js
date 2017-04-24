@@ -10,6 +10,7 @@ const cheerio = require('cheerio');
 const chalk = require('chalk');
 
 const TEMPLATE_DIR = process.env.SMOOTHIE_TEMPLATE_DIR;
+const TEMPLATE_BUILD_DIR = process.env.SMOOTHIE_BUILD_TEMPLATE_DIR;
 const LAYOUT_FILE = process.env.SMOOTHIE_LAYOUT_FILE
   ? process.env.SMOOTHIE_LAYOUT_FILE
   : undefined;
@@ -40,10 +41,17 @@ class SmoothieException {
 try {
   if (!TEMPLATE_DIR) throw new SmoothieException('No template dir specified');
   // fs.accessSync(TEMPLATE_DIR, fs.F_OK);
-  const FOUNDATION_STYLE_PATH = path.join(
-    'node_modules/foundation-emails/dist',
-    'foundation-emails.css'
-  );
+  foundation_path_old = path.join('node_modules/foundation-emails/dist','foundation-emails.css');
+  foundation_path_new = path.join('assets/node_modules/foundation-emails/dist','foundation-emails.css');
+  var foundation_path = foundation_path_old;
+  try {
+    fs.accessSync(foundation_path_old, fs.constants.F_OK);
+  } catch(e) {
+    fs.accessSync(foundation_path_new, fs.constants.F_OK);
+    foundation_path = foundation_path_new;
+  }
+  const FOUNDATION_STYLE_PATH = foundation_path;
+
 
   console.log('Preparing to compile the following template files:');
   const templateFiles = fs
@@ -105,17 +113,17 @@ try {
     );
 
     try {
-      fs.mkdirSync(path.join(TEMPLATE_DIR, 'build'));
+      fs.mkdirSync(TEMPLATE_BUILD_DIR);
     } catch (e) {
       if (e.code != 'EEXIST') throw e;
     }
 
-    fs.writeFileSync(path.join(TEMPLATE_DIR, 'build', file), juicedTemplate);
+    fs.writeFileSync(path.join(TEMPLATE_BUILD_DIR, file), juicedTemplate);
 
     console.log('Created ' + file);
 
     fs.writeFileSync(
-      path.join(TEMPLATE_DIR, 'build', file.replace('html.eex', 'txt.eex')),
+      path.join(TEMPLATE_BUILD_DIR, file.replace('html.eex', 'txt.eex')),
       textTemplate
     );
 

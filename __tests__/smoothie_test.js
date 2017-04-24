@@ -31,7 +31,8 @@ test(
   () =>
     runScript({
       env: Object.assign(PROCESS_ENV, {
-        SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple'
+        SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple',
+        SMOOTHIE_BUILD_TEMPLATE_DIR: '__tests__/data/simple/build'
       })
     }).then(() => {
       const html = 'template_simple.html.eex';
@@ -47,6 +48,7 @@ test(
     runScript({
       env: Object.assign(PROCESS_ENV, {
         SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple_with_foundation',
+        SMOOTHIE_BUILD_TEMPLATE_DIR: '__tests__/data/simple_with_foundation/build',
         SMOOTHIE_USE_FOUNDATION: 'true'
       })
     }).then(() => {
@@ -63,6 +65,7 @@ test(
     runScript({
       env: Object.assign(PROCESS_ENV, {
         SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple',
+        SMOOTHIE_BUILD_TEMPLATE_DIR: '__tests__/data/simple/build',
         SMOOTHIE_LAYOUT_FILE: '__tests__/data/layout/wrong.html.eex',
         SMOOTHIE_USE_FOUNDATION: 'false'
       })
@@ -77,6 +80,7 @@ test(
     runScript({
       env: Object.assign(PROCESS_ENV, {
         SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple_with_layout',
+        SMOOTHIE_BUILD_TEMPLATE_DIR: '__tests__/data/simple_with_layout/build',
         SMOOTHIE_LAYOUT_FILE: '__tests__/data/layout/layout.html.eex',
         SMOOTHIE_USE_FOUNDATION: 'false'
       })
@@ -94,6 +98,7 @@ test(
     runScript({
       env: Object.assign(PROCESS_ENV, {
         SMOOTHIE_TEMPLATE_DIR: '__tests__/data/simple_with_layout_and_stylesheet',
+        SMOOTHIE_BUILD_TEMPLATE_DIR: '__tests__/data/simple_with_layout_and_stylesheet/build',
         SMOOTHIE_LAYOUT_FILE: '__tests__/data/layout/layout.html.eex',
         SMOOTHIE_SCSS_FILE: '__tests__/data/css/style.scss',
         SMOOTHIE_USE_FOUNDATION: 'false'
