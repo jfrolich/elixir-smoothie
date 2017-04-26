@@ -1,49 +1,124 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/Cellar/node/7.0.0/bin/node',
+1 verbose cli [ '/usr/local/Cellar/node/7.2.1/bin/node',
 1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'run',
-1 verbose cli   'patch-release' ]
-2 info using npm@4.0.5
-3 info using node@v7.4.0
-4 verbose run-script [ 'prepatch-release', 'patch-release', 'postpatch-release' ]
-5 info lifecycle elixir-smoothie@2.0.3~prepatch-release: elixir-smoothie@2.0.3
-6 silly lifecycle elixir-smoothie@2.0.3~prepatch-release: no script for prepatch-release, continuing
-7 info lifecycle elixir-smoothie@2.0.3~patch-release: elixir-smoothie@2.0.3
-8 verbose lifecycle elixir-smoothie@2.0.3~patch-release: unsafe-perm in lifecycle true
-9 verbose lifecycle elixir-smoothie@2.0.3~patch-release: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Jaap/Documents/development/elixir-smoothie/node_modules/.bin:./node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-10 verbose lifecycle elixir-smoothie@2.0.3~patch-release: CWD: /Users/Jaap/Documents/development/elixir-smoothie
-11 silly lifecycle elixir-smoothie@2.0.3~patch-release: Args: [ '-c',
-11 silly lifecycle   'npm version patch && npm publish && git push --follow-tags' ]
-12 silly lifecycle elixir-smoothie@2.0.3~patch-release: Returned: code: 1  signal: null
-13 info lifecycle elixir-smoothie@2.0.3~patch-release: Failed to exec patch-release script
-14 verbose stack Error: elixir-smoothie@2.0.3 patch-release: `npm version patch && npm publish && git push --follow-tags`
-14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:279:16)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:40:14)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:885:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
-15 verbose pkgid elixir-smoothie@2.0.3
-16 verbose cwd /Users/Jaap/Documents/development/elixir-smoothie
-17 error Darwin 16.3.0
-18 error argv "/usr/local/Cellar/node/7.0.0/bin/node" "/usr/local/bin/npm" "run" "patch-release"
-19 error node v7.4.0
-20 error npm  v4.0.5
-21 error code ELIFECYCLE
-22 error elixir-smoothie@2.0.3 patch-release: `npm version patch && npm publish && git push --follow-tags`
-22 error Exit status 1
-23 error Failed at the elixir-smoothie@2.0.3 patch-release script 'npm version patch && npm publish && git push --follow-tags'.
-23 error Make sure you have the latest version of node.js and npm installed.
-23 error If you do, this is most likely a problem with the elixir-smoothie package,
-23 error not with npm itself.
-23 error Tell the author that this fails on your system:
-23 error     npm version patch && npm publish && git push --follow-tags
-23 error You can get information on how to open an issue for this project with:
-23 error     npm bugs elixir-smoothie
-23 error Or if that isn't available, you can get their info via:
-23 error     npm owner ls elixir-smoothie
-23 error There is likely additional logging output above.
-24 verbose exit [ 1, true ]
+1 verbose cli   'publish' ]
+2 info using npm@3.10.9
+3 info using node@v7.2.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/Jaap/Documents/development/elixir-smoothie',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/Jaap/.npm/elixir-smoothie/2.0.5/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/Jaap/.npm correctMkdir not in flight; initializing
+10 info lifecycle elixir-smoothie@2.0.5~prepublish: elixir-smoothie@2.0.5
+11 silly lifecycle elixir-smoothie@2.0.5~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/Jaap/.npm/elixir-smoothie/2.0.5/package.tgz',
+12 verbose tar pack   '/Users/Jaap/Documents/development/elixir-smoothie' ]
+13 verbose tarball /Users/Jaap/.npm/elixir-smoothie/2.0.5/package.tgz
+14 verbose folder /Users/Jaap/Documents/development/elixir-smoothie
+15 verbose addLocalTarball adding from inside cache /Users/Jaap/.npm/elixir-smoothie/2.0.5/package.tgz
+16 verbose correctMkdir /Users/Jaap/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd elixir-smoothie@2.0.5
+18 verbose afterAdd /Users/Jaap/.npm/elixir-smoothie/2.0.5/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/Jaap/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/Jaap/.npm/elixir-smoothie/2.0.5/package/package.json written
+21 silly publish { name: 'elixir-smoothie',
+21 silly publish   version: '2.0.5',
+21 silly publish   description: 'Juice up your Elixir templates, compagnion of the Smoothy package on Hex.pm for Elixir.',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts:
+21 silly publish    { test: 'jest',
+21 silly publish      'patch-release': 'npm version patch && npm publish && git push --follow-tags' },
+21 silly publish   bin: { 'elixir-smoothie': './index.js' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+ssh://git@github.com/jfrolich/elixir-smoothie.git' },
+21 silly publish   keywords: [ 'inline', 'styles', 'email', 'e-mail', 'elixir', 'phoenix' ],
+21 silly publish   authors:
+21 silly publish    [ 'Jaap Frolich <jfrolich@gmail.com> (https://github.com/jfrolich)',
+21 silly publish      'Stephen Moloney (https://github.com/stephenmoloney)' ],
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/jfrolich/elixir-smoothie/issues' },
+21 silly publish   homepage: 'https://github.com/jfrolich/elixir-smoothie#readme',
+21 silly publish   dependencies:
+21 silly publish    { chalk: '^1.1.3',
+21 silly publish      cheerio: '^0.22.0',
+21 silly publish      del: '^2.2.2',
+21 silly publish      'foundation-emails': '^2.2.1',
+21 silly publish      'html-to-text': '^2.1.3',
+21 silly publish      inky: '^1.3.7',
+21 silly publish      juice: '^3.0.1',
+21 silly publish      'node-sass': '^3.4.2' },
+21 silly publish   devDependencies: { eslint: '^3.7.1', jest: '^16.0.1' },
+21 silly publish   readme: '# Elixir Smoothie\n\nThis is the direct companion of the smoothie package on Elixirs Hex.pm.\nThis npm package will be installed while installing Smoothie.\n\n## Tests\n\n`yarn install && yarn run test`\n\nSee the [smoothie repository](https://github.com/jfrolich/smoothie)\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'fbab428d4b41f105e8e09939dfe8fb829a6fbd9f',
+21 silly publish   _id: 'elixir-smoothie@2.0.5',
+21 silly publish   _shasum: 'b2869f60ef310cfe084d3561b0f32c1858383c90',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name elixir-smoothie
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'elixir-smoothie',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'elixir-smoothie',
+26 silly mapToRegistry   name: 'elixir-smoothie',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/elixir-smoothie
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/Jaap/.npm/elixir-smoothie/2.0.5/package.tgz
+30 verbose request uri https://registry.npmjs.org/elixir-smoothie
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 10:49:12 AM
+33 verbose request using bearer token for auth
+34 verbose request id fc605e160ce19a60
+35 http request PUT https://registry.npmjs.org/elixir-smoothie
+36 http 403 https://registry.npmjs.org/elixir-smoothie
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 26 Apr 2017 02:49:13 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-sjc3643-SJC',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1493174953.168347,VS0,VE418',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/Jaap/.npm/registry.npmjs.org/elixir-smoothie on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 2.0.5." : elixir-smoothie
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid elixir-smoothie
+43 verbose cwd /Users/Jaap/Documents/development/elixir-smoothie
+44 error Darwin 16.5.0
+45 error argv "/usr/local/Cellar/node/7.2.1/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v7.2.1
+47 error npm  v3.10.9
+48 error code E403
+49 error "You cannot publish over the previously published version 2.0.5." : elixir-smoothie
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
