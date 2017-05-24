@@ -98,19 +98,7 @@ try {
     let template = fs.readFileSync(path.join(TEMPLATE_DIR, file), {
       encoding: 'utf-8'
     });
-    template = layout.replace('{content}', template);
-
-    let $ = cheerio.load(escapeEex(template), { xmlMode: true });
-    // const templateCss = $('style').contents().toArray().reduce((prev, curr) => prev + curr.data, '');
-    // do not remove inline styles, they could contain things like media queries
-    // $('style').remove();
-    template = USE_FOUNDATION ? compileInky($) : $.html();
-    template = unescapeEex(template);
-
-    const juicedTemplate = juice(template, JUICE_OPTIONS);
-    const textTemplate = unescapeEex(
-      htmlToText.fromString(escapeEex(template), { uppercaseHeadings: false })
-    );
+    textFile = file.replace('html.eex', 'txt.eex')
 
     try {
       fs.mkdirSync(TEMPLATE_BUILD_DIR);
@@ -118,16 +106,32 @@ try {
       if (e.code != 'EEXIST') throw e;
     }
 
-    fs.writeFileSync(path.join(TEMPLATE_BUILD_DIR, file), juicedTemplate);
+    if (file.includes('html.eex')) {
+      template = layout.replace('{content}', template);
+      let $ = cheerio.load(escapeEex(template), { xmlMode: true });
+      // const templateCss = $('style').contents().toArray().reduce((prev, curr) => prev + curr.data, '');
+      // do not remove inline styles, they could contain things like media queries
+      // $('style').remove();
+      template = USE_FOUNDATION ? compileInky($) : $.html();
+      template = unescapeEex(template);
 
-    console.log('Created ' + file);
+      const juicedTemplate = juice(template, JUICE_OPTIONS);
+      fs.writeFileSync(path.join(TEMPLATE_BUILD_DIR, file), juicedTemplate);
 
-    fs.writeFileSync(
-      path.join(TEMPLATE_BUILD_DIR, file.replace('html.eex', 'txt.eex')),
-      textTemplate
-    );
+      console.log('Created ' + file);
 
-    console.log('Created ' + file.replace('html.eex', 'txt.eex'));
+      if (!templateFiles.includes(textFile)) {
+        const textTemplate = unescapeEex(
+          htmlToText.fromString(escapeEex(template), { uppercaseHeadings: false })
+        );
+        fs.writeFileSync(path.join(TEMPLATE_BUILD_DIR, textFile), textTemplate);
+        console.log('Created ' + textFile);
+      }
+
+    } else if (file.includes('txt.eex')) {
+      fs.writeFileSync(path.join(TEMPLATE_BUILD_DIR, textFile), template);
+      console.log('Copied ' + textFile);
+    }
   });
   console.log('Done \uD83D\uDE4F');
 } catch (error) {
