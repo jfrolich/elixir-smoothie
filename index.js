@@ -23,6 +23,7 @@ const SCSS_FILE = process.env.SMOOTHIE_SCSS_FILE
 const USE_FOUNDATION = process.env.SMOOTHIE_USE_FOUNDATION
   ? process.env.SMOOTHIE_USE_FOUNDATION == 'true'
   : false;
+const HTML_ONLY = process.env.SMOOTHIE_HTML_ONLY == 'true';
 
 const btoa = string => {
   return new Buffer(string).toString('base64');
@@ -56,7 +57,13 @@ try {
   console.log('Preparing to compile the following template files:');
   const templateFiles = fs
     .readdirSync(TEMPLATE_DIR)
-    .filter(file => file.includes('.eex'));
+    .filter(file => {
+      if (HTML_ONLY) {
+        return file.includes('.html.eex')
+      } else {
+        return file.includes('.eex')
+      }
+    });
   console.log(templateFiles.map(file => '- ' + file).join('\n'));
 
   let css = USE_FOUNDATION
@@ -120,7 +127,7 @@ try {
 
       console.log('Created ' + file);
 
-      if (!templateFiles.includes(textFile)) {
+      if (!HTML_ONLY && !templateFiles.includes(textFile)) {
         const textTemplate = unescapeEex(
           htmlToText.fromString(escapeEex(template), { uppercaseHeadings: false })
         );
