@@ -1,6 +1,6 @@
 {
   "name": "elixir-smoothie",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Juice up your Elixir templates, compagnion of the Smoothy package on Hex.pm for Elixir.",
   "main": "index.js",
   "scripts": {
